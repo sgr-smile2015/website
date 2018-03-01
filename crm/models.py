@@ -72,7 +72,7 @@ class CustomerFollowUp(models.Model):
 
 class Course(models.Model):
     name = models.CharField(max_length=64, unique=True)
-    price = models.PositiveSmallIntegerField()
+    price = models.PositiveSmallIntegerField(default=500)
     period = models.PositiveSmallIntegerField(verbose_name="周期(月)")
     outline = models.TextField()
 
