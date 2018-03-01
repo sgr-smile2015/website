@@ -10,6 +10,7 @@ class CustomerAdmin(admin.ModelAdmin):
     filter_horizontal = ('tags',)
     list_editable = ('status',)
 
+
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Tag)
 admin.site.register(CustomerFollowUp)
