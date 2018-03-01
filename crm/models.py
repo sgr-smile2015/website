@@ -26,6 +26,11 @@ class Customer(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     memo = models.TextField(blank=True, null=True)
     tags = models.ManyToManyField("Tag", blank=True)
+    status_choices = (
+        (0, '已报名'),
+        (1, '未报名'),
+    )
+    status = models.SmallIntegerField(choices=status_choices, default=1)
 
     def __str__(self):
         return self.qq
@@ -221,6 +226,7 @@ class UserProfile(models.Model):
 
 class Role(models.Model):
     name = models.CharField(max_length=32, unique=True)
+    menus = models.ManyToManyField("Menu", blank=True)
 
     def __str__(self):
         return self.name
@@ -232,7 +238,7 @@ class Role(models.Model):
 
 class Menu(models.Model):
     name = models.CharField(max_length=32, unique=True)
-    url_name = models.CharField(max_length=128)
+    url_name = models.CharField(max_length=64)
 
     def __str__(self):
         return self.name

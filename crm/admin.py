@@ -4,9 +4,13 @@ from .models import *
 
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('id', 'qq', 'source', 'consultant', 'content', 'status', 'date')
+    list_filter = ('source', 'consultant', 'date')
+    search_fields = ('qq', 'name')
+    raw_id_fields = ('consult_course',)
+    filter_horizontal = ('tags',)
+    list_editable = ('status',)
 
-
-admin.site.register(Customer)
+admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Tag)
 admin.site.register(CustomerFollowUp)
 admin.site.register(Course)
