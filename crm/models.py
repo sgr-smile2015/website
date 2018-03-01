@@ -228,3 +228,11 @@ class Role(models.Model):
     class Meta:
         verbose_name = "角色"
         verbose_name_plural = "角色"
+
+
+class Menu(models.Model):
+    name = models.CharField(max_length=32, unique=True)
+    url_name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
