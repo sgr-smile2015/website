@@ -31,7 +31,7 @@
           <ul class="nav nav-sidebar">
              {% for role in request.user.userprofile.roles.all %}
                  {% for menu in role.menus.all %}
-                 <li class=""><a href="{{ menu.url_name }}">{{ menu.name }} <span class="sr-only">(current)</span></a></li>
+                 <li class=""><a href="{% url menu.url_name %}">{{ menu.name }}</a></li>
                  {% endfor %}
              {% endfor %}
           </ul>

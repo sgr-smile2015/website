@@ -1,9 +1,9 @@
 from django.conf.urls import url
-from . import views
+from crm import views
 
-app_name = 'crm'
+#app_name = 'crm'
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^sales/$', views.customer_list, name='sales_index'),
+    url(r'^$', views.index, name="sales_index"),
+    url(r'^customer/$', views.customer_list, name="customer_list"),
 ]

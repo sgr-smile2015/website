@@ -6,4 +6,5 @@
 </ul>
 {% else %}
 <p>No polls are available.</p>
+    <a href="{% url 'polls:detail' question.id %}">detail</a>
 {% endif %}
