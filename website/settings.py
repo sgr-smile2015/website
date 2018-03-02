@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'polls',
     'crm',
+    'student',
 ]
 
 MIDDLEWARE = [
