@@ -11,6 +11,10 @@ class CustomerAdmin(admin.ModelAdmin):
     list_editable = ('status',)
 
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'name')
+
+
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Tag)
 admin.site.register(CustomerFollowUp)
@@ -21,6 +25,6 @@ admin.site.register(CourseRecord)
 admin.site.register(StudyRecord)
 admin.site.register(Enrollment)
 admin.site.register(Payment)
-admin.site.register(UserProfile)
+admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Role)
 admin.site.register(Menu)
