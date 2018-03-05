@@ -28,6 +28,7 @@ def register(model_class, admin_class=None):
         #enabled_admins['crm'] = {}
         enabled_admins[model_class._meta.app_label] = {}
 
+    #绑定model对象和admin类
     admin_class.model = model_class
     #enabled_admins['crm']['customer'] = CustomerAdmin
     enabled_admins[model_class._meta.app_label][model_class._meta.model_name] = admin_class
