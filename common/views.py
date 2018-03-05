@@ -9,5 +9,5 @@ def index(request):
 
 def display_table_objs(request, app_name, table_name):
     print("-->{app} {table}" .format(app=app_name, table=table_name))
-    content = str(table_name)
-    return render(request, 'common/table_objs.html', {"content": content})
+    admin_class = base_admin.enabled_admins[app_name][table_name]
+    return render(request, 'common/table_objs.html', {"admin_class": admin_class})
