@@ -20,8 +20,9 @@
       </div>
     </nav>
 
-{% block container %}
     <div class="container" style="margin: 60px; width:auto;">
+        {% block container %}
+
         <div class="row">
 
             <div class="panel panel-success">
@@ -58,8 +59,8 @@
             </div>
 
         </div>
+        {% endblock %}
     </div>
 
-{% endblock %}
 
 {% endblock %}

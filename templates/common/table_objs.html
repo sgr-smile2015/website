@@ -1,12 +1,8 @@
 {% extends 'common/index.html' %}
 {% load tags %}
 
-{% block my_base %}
-
-<p>display table objects!</p>
 
 {% block container %}
 {{ admin_class.list_display }}
 {% endblock %}
 
-{% endblock %}
