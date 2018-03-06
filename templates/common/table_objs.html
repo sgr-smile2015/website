@@ -3,6 +3,29 @@
 
 
 {% block container %}
-{{ admin_class.list_display }}
+    <div class="row">
+        <div class="panel panel-success">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        {% for column in admin_class.list_display %}
+                        <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% get_query_sets admin_class as query_sets %}
+                    {% for obj in query_sets %}
+                    <tr>
+                    {% build_table_row obj admin_class %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    </div>
 {% endblock %}
 

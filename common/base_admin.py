@@ -8,10 +8,12 @@ enabled_admins = {}
 class BaseAdmin(object):
     list_display = []
     list_filter = []
+    list_per_page = 20
 
 
 class CustomerAdmin(BaseAdmin):
-    list_display = ['qq', 'name']
+    list_display = ['qq', 'qq_name', 'source', 'consultant', 'consult_course', 'status', 'date']
+    list_filter = ['source', 'consultant', 'consult_course', 'status']
 
 
 class CustomerFollowUpAdmin(BaseAdmin):
