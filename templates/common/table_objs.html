@@ -19,17 +19,19 @@
                     </tr>
                     </thead>
 
+                    <div class="row">
                     <form class="" method="get">
                         {% for condtion in admin_class.list_filters %}
                             <div class="col-lg-2">
                                 <span>{{ condtion }}</span>
-{#                            {% render_page_ele condtion admin_class filter_conditions %}#}
+                            {% render_filter_ele condtion admin_class filter_conditions %}
                             </div>
                         {% endfor %}
 
                     <button type="SUBMIT" class="btn btn-success">检索</button>
-
                     </form>
+                    </div>
+
                     <tbody>
 
                     {% get_query_sets admin_class as query_set %}
