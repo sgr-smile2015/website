@@ -54,7 +54,7 @@ def render_page_ele(loop_counter, query_sets):
 
 @register.simple_tag
 def render_filter_ele(condtion, admin_class, filter_condtions):
-    select_ele = '''<select class="form-control" name='%s' ><option value=''>----</option>''' %condtion
+    select_ele = '''<select class="form-control" name='%s' ><option value=''>----</option>''' % condtion
     field_obj = admin_class.model._meta.get_field(condtion)
     if field_obj.choices:
         selected = ''

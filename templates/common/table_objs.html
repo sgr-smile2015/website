@@ -20,16 +20,16 @@
                     </thead>
 
                     <div class="row">
-                    <form class="" method="get">
-                        {% for condtion in admin_class.list_filters %}
-                            <div class="col-lg-2">
-                                <span>{{ condtion }}</span>
-                            {% render_filter_ele condtion admin_class filter_conditions %}
-                            </div>
-                        {% endfor %}
+                        <form class="" method="get">
+                            {% for condtion in admin_class.list_filter %}
+                                <div class="col-lg-2">
+                                    <span>{{ condtion }}</span>
+                                    {% render_filter_ele condtion admin_class filter_conditions %}
+                                </div>
+                            {% endfor %}
 
-                    <button type="SUBMIT" class="btn btn-success">检索</button>
-                    </form>
+                            <button type="SUBMIT" class="btn btn-success">检索</button>
+                        </form>
                     </div>
 
                     <tbody>
@@ -45,32 +45,24 @@
 
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="false">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">{{ filter_conditions }}</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="false">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
                         {% if query_sets.has_previous %}
+                        <li class="">
+                        <a href="?page={{ query_sets.previous_page_number }}">Up</a>
+                        </li>
+                        {% endif %}
+
+                        {% for loop_counter in query_sets.paginator.page_range %}
+                            {% render_page_ele loop_counter query_sets %}
+                        {% endfor %}
+
+
+                        {% if query_sets.has_next %}
                             <li class="">
-                            <a href="?page=">{{ query_sets }}</a>
+                            <a href="?page={{ query_sets.next_page_number }}">Next</a>
                             </li>
                         {% endif %}
                     </ul>
                 </nav>
-
-
-
 
             </div>
 
