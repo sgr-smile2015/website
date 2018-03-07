@@ -19,21 +19,17 @@
                     </tr>
                     </thead>
 
-                    {% for col_filter in admin_class.list_filter %}
-                        {{ col_filter }}
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                --------------
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                {% for opts in filter_conditions.items %}
-                                <li><a href="#">{{ opts }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endfor %}
+                    <form class="" method="get">
+                        {% for condtion in admin_class.list_filters %}
+                            <div class="col-lg-2">
+                                <span>{{ condtion }}</span>
+{#                            {% render_page_ele condtion admin_class filter_conditions %}#}
+                            </div>
+                        {% endfor %}
 
+                    <button type="SUBMIT" class="btn btn-success">检索</button>
+
+                    </form>
                     <tbody>
 
                     {% get_query_sets admin_class as query_set %}
