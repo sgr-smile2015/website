@@ -1,5 +1,6 @@
 from django import template
 from django.utils.html import mark_safe
+from datetime import datetime
 #from django.utils.safestring import mark_safe
 register = template.Library()
 
@@ -16,6 +17,11 @@ def get_query_sets(admin_class):
 
 @register.simple_tag
 def build_table_row(obj, admin_class):
+    """
+    obj: crm.models.Customer
+    admin_class: common.base_admin.CustomerAdmin
+    return: mark_safe string
+    """
     row_ele = ""
     for column in admin_class.list_display:
         field_obj = obj._meta.get_field(column)
@@ -24,6 +30,13 @@ def build_table_row(obj, admin_class):
             data = getattr(obj, "get_%s_display" % column)()
         else:
             data = getattr(obj, column)
+        try:
+            if field_obj.auto_now_add:
+                s = getattr(obj, 'date')
+                data = s.strftime('%Y-%m-%d %H:%M:%S')
+        except Exception:
+            pass
+
         row_ele += '<td>%s</td>' % data
     return mark_safe(row_ele)
 
