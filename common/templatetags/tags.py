@@ -42,11 +42,11 @@ def build_table_row(obj, admin_class):
 
 
 @register.simple_tag
-def render_page_ele(lopp_counter, query_sets):
-    if abs(query_sets.number - lopp_counter) <= 1:
+def render_page_ele(loop_counter, query_sets):
+    if abs(query_sets.number - loop_counter) <= 1:
         ele_class = ""
-        if query_sets.number == lopp_counter:
+        if query_sets.number == loop_counter:
             ele_class = "active"
-        ele = '''<li class="%s"><a href="?page=%s">%s</a></li>''' % (ele_class, lopp_counter)
+        ele = '''<li class="%s"><a href="?page=%s">%s</a></li>''' % (ele_class, loop_counter, loop_counter)
 
     return mark_safe(ele)

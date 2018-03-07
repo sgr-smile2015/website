@@ -19,9 +19,25 @@
                     </tr>
                     </thead>
 
+                    {% for col_filter in admin_class.list_filter %}
+                        {{ col_filter }}
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                --------------
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                {% for opts in filter_conditions.items %}
+                                <li><a href="#">{{ opts }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+
                     <tbody>
-                    {% get_query_sets admin_class as query_sets %}
-                    {% for obj in query_sets %}
+
+                    {% get_query_sets admin_class as query_set %}
+                    {% for obj in query_set %}
                         <tr>
                             {% build_table_row obj admin_class %}
                         </tr>
@@ -33,17 +49,32 @@
                     <ul class="pagination">
                         <li>
                             <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
+                                <span aria-hidden="false">&laquo;</span>
                             </a>
                         </li>
-                        <li><a href="#">1</a></li>
+                        <li><a href="#">{{ filter_conditions }}</a></li>
                         <li>
                             <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
+                                <span aria-hidden="false">&raquo;</span>
                             </a>
                         </li>
                     </ul>
                 </nav>
+
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {% if query_sets.has_previous %}
+                            <li class="">
+                            <a href="?page=">{{ query_sets }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+
+
+
+
+            </div>
 
             </div>
 

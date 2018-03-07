@@ -18,6 +18,7 @@ class CustomerAdmin(BaseAdmin):
 
 class CustomerFollowUpAdmin(BaseAdmin):
     list_display = ['customer', 'consultant', 'date']
+    list_filter = ['consultant']
 
 
 def register(model_class, admin_class=None):
