@@ -17,7 +17,6 @@ def display_table_objs(request, app_name, table_name):
     paginator = Paginator(object_list, admin_class.list_per_page)
 
     page = request.GET.get('page')
-    print('page-->', page)
     try:
         query_sets = paginator.page(page)
     except PageNotAnInteger:
