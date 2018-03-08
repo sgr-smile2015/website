@@ -13,10 +13,11 @@
                     <form class="form-inline" method="get">
                         {% for condtion in admin_class.list_filter %}
                             <div class="col-lg-2">
-                                <span class="text-primary">{{ condtion }}</span>
+                                <p class="text-primary">{{ condtion }}</p>
                                 {% render_filter_ele condtion admin_class filter_conditions %}
                             </div>
                         {% endfor %}
+                        <p class="text-primary">Retrieve</p>
                         <button type="SUBMIT" class="btn btn-primary">检索</button>
 
                         <input type="search" class="form-control" placeholder="Search">
