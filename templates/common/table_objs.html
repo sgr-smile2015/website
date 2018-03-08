@@ -3,7 +3,7 @@
 
 
 {% block container %}
-        <div class="panel panel-success">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Project name</h3>
             </div>
@@ -13,12 +13,12 @@
                     <form class="" method="get">
                         {% for condtion in admin_class.list_filter %}
                             <div class="col-lg-2">
-                                <span>{{ condtion }}</span>
+                                <p class="text-primary">{{ condtion }}</p>
                                 {% render_filter_ele condtion admin_class filter_conditions %}
                             </div>
                         {% endfor %}
-
-                        <button type="SUBMIT" class="btn btn-success">检索</button>
+                        <p class="text-primary">Retrieve</p>
+                        <button type="SUBMIT" class="btn btn-primary">检索</button>
                     </form>
                 </div>
 
