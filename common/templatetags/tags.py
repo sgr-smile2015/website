@@ -1,6 +1,5 @@
 from django import template
 from django.utils.html import mark_safe
-from datetime import datetime
 #from django.utils.safestring import mark_safe
 register = template.Library()
 
@@ -48,18 +47,25 @@ def render_page_ele(loop_counter, query_sets):
         if query_sets.number == loop_counter:
             ele_class = "active"
         ele = '''<li class="%s"><a href="?page=%s">%s</a></li>''' % (ele_class, loop_counter, loop_counter)
+        return mark_safe(ele)
 
-    return mark_safe(ele)
+    return ''
 
 
 @register.simple_tag
 def render_filter_ele(condtion, admin_class, filter_condtions):
+    """
+    condtion: admin_class.list_filter
+    admin_class:
+    filter_condtions: if choices else database auto id
+    return:
+    """
     select_ele = '''<select class="form-control" name='%s' ><option value=''>----</option>''' % condtion
     field_obj = admin_class.model._meta.get_field(condtion)
     if field_obj.choices:
         selected = ''
         for choice_item in field_obj.choices:
-            print("choice", choice_item, filter_condtions.get(condtion), type(filter_condtions.get(condtion)))
+            #print("choice", choice_item, filter_condtions.get(condtion), type(filter_condtions.get(condtion)))
             if filter_condtions.get(condtion) == str(choice_item[0]):
                 selected ="selected"
 

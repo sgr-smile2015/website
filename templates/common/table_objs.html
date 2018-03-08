@@ -3,13 +3,25 @@
 
 
 {% block container %}
-    <div class="row">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">Project name</h3>
             </div>
 
             <div class="panel-body">
+                <div class="row">
+                    <form class="" method="get">
+                        {% for condtion in admin_class.list_filter %}
+                            <div class="col-lg-2">
+                                <span>{{ condtion }}</span>
+                                {% render_filter_ele condtion admin_class filter_conditions %}
+                            </div>
+                        {% endfor %}
+
+                        <button type="SUBMIT" class="btn btn-success">检索</button>
+                    </form>
+                </div>
+
                 <table class="table table-hover">
                     <thead>
                     <tr>
@@ -18,24 +30,9 @@
                         {% endfor %}
                     </tr>
                     </thead>
-
-                    <div class="row">
-                        <form class="" method="get">
-                            {% for condtion in admin_class.list_filter %}
-                                <div class="col-lg-2">
-                                    <span>{{ condtion }}</span>
-                                    {% render_filter_ele condtion admin_class filter_conditions %}
-                                </div>
-                            {% endfor %}
-
-                            <button type="SUBMIT" class="btn btn-success">检索</button>
-                        </form>
-                    </div>
-
                     <tbody>
-
-                    {% get_query_sets admin_class as query_set %}
-                    {% for obj in query_set %}
+{#                    {% get_query_sets admin_class as query_set %}#}
+                    {% for obj in query_sets %}
                         <tr>
                             {% build_table_row obj admin_class %}
                         </tr>
@@ -69,7 +66,6 @@
             </div>
 
         </div>
-    </div>
 
 {% endblock %}
 

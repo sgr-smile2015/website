@@ -36,6 +36,7 @@ class Customer(models.Model):
         return self.qq
 
     class Meta:
+        ordering = ['-id']
         verbose_name = "客户表"
         verbose_name_plural = "客户表"
 
@@ -71,6 +72,7 @@ class CustomerFollowUp(models.Model):
         return "<%s : %s>" % (self.customer.qq, self.intention)
 
     class Meta:
+        ordering = ['-id']
         verbose_name = "客户跟进"
         verbose_name_plural = "客户跟进"
 
