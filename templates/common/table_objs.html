@@ -10,15 +10,18 @@
 
             <div class="panel-body">
                 <div class="row">
-                    <form class="" method="get">
+                    <form class="form-inline" method="get">
                         {% for condtion in admin_class.list_filter %}
                             <div class="col-lg-2">
-                                <p class="text-primary">{{ condtion }}</p>
+                                <span class="text-primary">{{ condtion }}</span>
                                 {% render_filter_ele condtion admin_class filter_conditions %}
                             </div>
                         {% endfor %}
-                        <p class="text-primary">Retrieve</p>
                         <button type="SUBMIT" class="btn btn-primary">检索</button>
+
+                        <input type="search" class="form-control" placeholder="Search">
+                        <button type="submit" class="btn btn-info">search</button>
+
                     </form>
                 </div>
 
