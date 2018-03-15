@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block site_title %}olddriver.com{% endblock %}</title>
+    <title>{% block site_title %}github.com{% endblock %}</title>
     {% include 'mysite/util/css.html' %}
 </head>
 
 <body>
-<div class="container">
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-</div>
+
+{% include 'mysite/util/nav.html' %}
 
 <div class="container">
     {% block content %}
-    {% endblock %}
+    {% endblock content %}
 </div>
 
     {% include 'mysite/util/js.html' %}

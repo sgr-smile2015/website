@@ -1,8 +1,8 @@
 {% extends 'mysite/base.html' %}
-{% block site_title %}Page|| {{ block.super }}{% endblock %}
+{% block site_title %}{{ block.super }}{% endblock %}
 
 {% block content %}
-<h3>Hello World!</h3>
+<h4>Hello World!</h4>
 <p>This is html {{ html_var }} coming</p>
 <p>This is random num: {{ num }}</p>
 <p>{% if bool_var %}
