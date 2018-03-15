@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>mysite</title>
-</head>
-<body>
+{% extends 'mysite/base.html' %}
+{% block site_title %}Page|| {{ block.super }}{% endblock %}
 
-<h1>Hello World!</h1>
+{% block content %}
+<h3>Hello World!</h3>
 <p>This is html {{ html_var }} coming</p>
 <p>This is random num: {{ num }}</p>
-
-<p>
-    {% if bool_var %}
+<p>{% if bool_var %}
         {{ num }}
     {% endif %}
 </p>
+
 <p>{% for some in some_lists %}
     {% if some|divisibleby:"3" %}
         Eeven num
     {% endif %}
     {{ some }}<br>
 {% endfor %}
-<p>
-
-</body>
-</html>
+</p>
+{% endblock %}

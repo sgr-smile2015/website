@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block site_title %}olddriver.com{% endblock %}</title>
+    {% include 'mysite/util/css.html' %}
+</head>
+
+<body>
+<div class="container">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+</div>
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+    {% include 'mysite/util/js.html' %}
+</body>
+
+</html>
