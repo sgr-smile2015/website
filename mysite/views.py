@@ -3,22 +3,24 @@ from random import randint
 #from django.http import HttpResponse
 
 from django.views.generic import TemplateView
+from django.views import View
 
 
-def about(request):
-    return render(request, 'mysite/about.html')
+class AboutView(TemplateView):
+    template_name = 'mysite/about.html'
 
 
-def contact(request):
-    return render(request, 'mysite/contact.html')
+class ContactView(TemplateView):
+    template_name = 'mysite/contact.html'
 
 
 class HomeView(TemplateView):
 
     template_name = 'mysite/home.html'
-    #return super(HomeView, self).get_context_data(**kwargs)
 
     def get_context_data(self, **kwargs):
+        #context = super(HomeView, self).get_context_data(**kwargs)
+
         html_var = 'git string'
         num = randint(0, 100000)
         some_list = [randint(0, 100000),
