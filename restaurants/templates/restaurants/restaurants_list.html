@@ -1,0 +1,16 @@
+{% extends 'mysite/base.html' %}
+{% block site_title %}Restaurants || {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="btn">
+    <h4>Restaurants</h4>
+    </div>
+
+    <div class="container">
+    <ul>
+        {% for list in obj_list %}
+            <li>{{ list.name }} || {{ list.location }} || {{ list.category }}</li>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

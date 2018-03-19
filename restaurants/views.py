@@ -5,6 +5,8 @@ from random import randint
 from django.views.generic import TemplateView
 from django.views import View
 
+from .models import RestaurantsLocation
+
 
 class AboutView(TemplateView):
     template_name = 'mysite/about.html'
@@ -33,3 +35,12 @@ class HomeView(TemplateView):
             'some_lists': some_list
         }
         return context
+
+
+def restaurants(request):
+    template_name = 'restaurants/restaurants_list.html'
+    queryset = RestaurantsLocation.objects.all()
+    context = {
+        'obj_list': queryset
+    }
+    return render(request, template_name, context)
