@@ -1,0 +1,14 @@
+{% extends 'mysite/base.html' %}
+{% block site_title %}Detail || {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="btn">
+    <h4>Detail</h4>
+    </div>
+
+    <div class="container">
+    <h3>{{ object.name }} <small>{{ object.category }}</small></h3>
+    <p>{{ object.timestamp }}</p>
+    <p>Update {{ object.uptime | timesince }} ago!</p>
+    </div>
+{% endblock %}

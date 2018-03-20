@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from random import randint
 #from django.http import HttpResponse
-from django.db.models.query_utils import Q
+from django.db.models import Q
 
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.views import View
 
 from .models import RestaurantsLocation
@@ -52,12 +52,28 @@ class RestaurantsListViews(ListView):
 
     def get_queryset(self):
         slug = self.kwargs.get("slug")
-        print(slug)
         if slug:
-            queryset = RestaurantsLocation.objects.filter(
+            q = RestaurantsLocation.objects.filter(
                 Q(category__iexact=slug) |
                 Q(category__icontains=slug))
         else:
-            queryset = RestaurantsLocation.objects.all()
-        return queryset
+            q = RestaurantsLocation.objects.all()
+        return q
+
+
+class RestaurantsDetailViews(DetailView):
+    template_name = 'restaurants/restaurants_detail.html'
+    queryset = RestaurantsLocation.objects.all()
+
+    #def get_context_data(self, **kwargs):
+    #    print(kwargs)
+    #    #context = super(RestaurantsDetailViews, self).get_context_data(**kwargs)
+    #    return 1
+
+    def get_object(self, queryset=None):
+        rest_id = self.kwargs.get('rest_id')
+        #pk = rest_id
+        obj = get_object_or_404(RestaurantsLocation, id=rest_id)
+        return obj
+
 
