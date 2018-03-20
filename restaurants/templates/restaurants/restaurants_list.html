@@ -8,8 +8,9 @@
 
     <div class="container">
     <ul>
-        {% for list in obj_list %}
-            <li>{{ list.name }} || {{ list.location }} || {{ list.category }}</li>
+        {% for list in object_list %}
+            <li>{{ list.name }} <br/>
+                {{ list.location }} || {{ list.category }} || {{ list.timestamp }} || {{ list.uptime }}</li>
         {% endfor %}
     </ul>
     </div>

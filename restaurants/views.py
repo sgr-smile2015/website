@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from random import randint
 #from django.http import HttpResponse
+from django.db.models.query_utils import Q
 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.views import View
 
 from .models import RestaurantsLocation
@@ -41,6 +42,22 @@ def restaurants(request):
     template_name = 'restaurants/restaurants_list.html'
     queryset = RestaurantsLocation.objects.all()
     context = {
-        'obj_list': queryset
+        'object_list': queryset
     }
     return render(request, template_name, context)
+
+
+class RestaurantsListViews(ListView):
+    template_name = 'restaurants/restaurants_list.html'
+
+    def get_queryset(self):
+        slug = self.kwargs.get("slug")
+        print(slug)
+        if slug:
+            queryset = RestaurantsLocation.objects.filter(
+                Q(category__iexact=slug) |
+                Q(category__icontains=slug))
+        else:
+            queryset = RestaurantsLocation.objects.all()
+        return queryset
+
