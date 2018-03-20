@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^contact$', views.ContactView.as_view(), name="contact"),
     url(r'^res/$', views.RestaurantsListViews.as_view(), name="res"),
     url(r'^res/(?P<rest_id>\d+)/$', views.RestaurantsDetailViews.as_view(), name="ResDetailViews"),
-    url(r'^res/(?P<slug>\w+)/$', views.RestaurantsListViews.as_view(), name="ResListViews"),
+    url(r'^res/(?P<slug>[\w-]+)/$', views.RestaurantsDetailViews.as_view(), name="ResListViews"),
+    #url(r'^res/(?P<slug>\w+)/$', views.RestaurantsDetailViews.as_view(), name="ResDetail"),
 ]

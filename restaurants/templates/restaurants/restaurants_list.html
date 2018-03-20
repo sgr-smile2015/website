@@ -9,7 +9,7 @@
     <div class="container">
     <ul>
         {% for list in object_list %}
-            <li>{{ list.name }} <br/>
+            <li><a href="/res/{{ list.slug }}">{{ list }}</a><br/>
                 {{ list.location }} || {{ list.category }} || {{ list.timestamp }} || {{ list.uptime }}</li>
         {% endfor %}
     </ul>

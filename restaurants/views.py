@@ -70,10 +70,10 @@ class RestaurantsDetailViews(DetailView):
     #    #context = super(RestaurantsDetailViews, self).get_context_data(**kwargs)
     #    return 1
 
-    def get_object(self, queryset=None):
-        rest_id = self.kwargs.get('rest_id')
-        #pk = rest_id
-        obj = get_object_or_404(RestaurantsLocation, id=rest_id)
-        return obj
+    #def get_object(self, queryset=None):
+    #    rest_id = self.kwargs.get('rest_id')
+    #    #pk = rest_id
+    #    obj = get_object_or_404(RestaurantsLocation, id=rest_id)
+    #    return obj
 
 
