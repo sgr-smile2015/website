@@ -41,19 +41,24 @@ class HomeView(TemplateView):
 
 def restaurants_create(request):
     template_name = 'restaurants/form.html'
-    if request.GET:
-        print(request.GET)
-    if request.POST:
-        name = request.POST.get('name')
-        location = request.POST.get('location')
-        category = request.POST.get('category')
+    form = RestaurantsCreateForm(request.POST or None)
+    error = form.errors
+
+    if form.is_valid():
+        name = form.cleaned_data.get('name')
+        location = form.cleaned_data.get('location')
+        category = form.cleaned_data.get('category')
         obj = RestaurantsLocation.objects.create(
             name=name,
             location=location,
             category=category
         )
         return HttpResponseRedirect('/res/')
+    if form.errors:
+        print(form.errors)
     context = {
+        'form': form,
+        'error': error
     }
     return render(request, template_name, context)
 

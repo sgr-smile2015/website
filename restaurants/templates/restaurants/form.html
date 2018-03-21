@@ -9,9 +9,14 @@
     <div class="container">
 
     <form method="post"> {% csrf_token %}
-        <input type="text" name="name" placeholder="Your Name"><br>
-        <input type="text" name="location" placeholder="Location"><br>
-        <input type="text" name="category" placeholder="Category"><br>
+{#        <input type="text" name="name" placeholder="Your Name"><br>#}
+{#        <input type="text" name="location" placeholder="Location"><br>#}
+{#        <input type="text" name="category" placeholder="Category"><br>#}
+        {% if error %}
+            {{ error }}
+        {% endif %}
+
+        {{ form.as_p  }}
         <button type="submit">Save</button>
     </form>
 
