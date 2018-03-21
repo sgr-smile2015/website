@@ -3,6 +3,7 @@ from django.db.models.signals import pre_save, post_save
 
 from .util import unique_slug_generator
 
+
 class RestaurantsLocation(models.Model):
     name = models.CharField(max_length=32)
     location = models.CharField(max_length=32, null=True, blank=True)
@@ -20,8 +21,8 @@ class RestaurantsLocation(models.Model):
 
 
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):
-    print('save...')
-    print(instance.timestamp)
+    # print('save...')
+    # print(instance.timestamp)
     if not instance.slug:
         #instance.name = 'Anoter new title'
         instance.slug = unique_slug_generator(instance)

@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from random import randint
-#from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.db.models import Q
 
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views import View
 
 from .models import RestaurantsLocation
+from .form import RestaurantsCreateForm
 
 
 class AboutView(TemplateView):
@@ -36,6 +37,25 @@ class HomeView(TemplateView):
             'some_lists': some_list
         }
         return context
+
+
+def restaurants_create(request):
+    template_name = 'restaurants/form.html'
+    if request.GET:
+        print(request.GET)
+    if request.POST:
+        name = request.POST.get('name')
+        location = request.POST.get('location')
+        category = request.POST.get('category')
+        obj = RestaurantsLocation.objects.create(
+            name=name,
+            location=location,
+            category=category
+        )
+        return HttpResponseRedirect('/res/')
+    context = {
+    }
+    return render(request, template_name, context)
 
 
 def restaurants(request):

@@ -1,0 +1,19 @@
+{% extends 'mysite/base.html' %}
+{% block site_title %}Add Item || {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="btn">
+    <h4>Adding</h4>
+    </div>
+
+    <div class="container">
+
+    <form method="post"> {% csrf_token %}
+        <input type="text" name="name" placeholder="Your Name"><br>
+        <input type="text" name="location" placeholder="Location"><br>
+        <input type="text" name="category" placeholder="Category"><br>
+        <button type="submit">Save</button>
+    </form>
+
+    </div>
+{% endblock %}
