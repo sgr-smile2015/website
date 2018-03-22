@@ -3,11 +3,11 @@ from random import randint
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.views import View
 
 from .models import RestaurantsLocation
-from .form import RestaurantsCreateForm
+from .form import RestaurantsCreateForm, RestaurantsLocationCreateForm
 
 
 class AboutView(TemplateView):
@@ -100,5 +100,12 @@ class RestaurantsDetailViews(DetailView):
     #    #pk = rest_id
     #    obj = get_object_or_404(RestaurantsLocation, id=rest_id)
     #    return obj
+
+
+class RestaurantsFormCreate(CreateView):
+    template_name = 'restaurants/form.html'
+    form_class = RestaurantsLocationCreateForm
+    success_url = '/res/'
+
 
 
