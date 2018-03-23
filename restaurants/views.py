@@ -107,5 +107,3 @@ class RestaurantsFormCreate(CreateView):
     form_class = RestaurantsLocationCreateForm
     success_url = '/res/'
 
-
-

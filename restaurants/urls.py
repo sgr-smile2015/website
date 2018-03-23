@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from . import views
+from . import api
 
 
 urlpatterns = [
@@ -10,5 +11,6 @@ urlpatterns = [
     url(r'^res/create/$', views.RestaurantsFormCreate.as_view(), name="create"),
     url(r'^res/(?P<rest_id>\d+)/$', views.RestaurantsDetailViews.as_view(), name="ResDetailViews"),
     url(r'^res/(?P<slug>[\w-]+)/$', views.RestaurantsDetailViews.as_view(), name="ResListViews"),
+    url(r'^v1/users/$', api.RestaurantsAPI.as_view(), name="ResAPI"),
     #url(r'^res/(?P<slug>\w+)/$', views.RestaurantsDetailViews.as_view(), name="ResDetail"),
 ]

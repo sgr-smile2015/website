@@ -1,5 +1,10 @@
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework import routers
+from restaurants import api
+
+#router = routers.DefaultRouter()
+#router.register(r'users', api.RestaurantsAPI)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
