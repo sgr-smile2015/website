@@ -9,6 +9,7 @@
     <div class="container">
     <h3>{{ object.title }} <small>{{ object.category }}</small></h3>
     <p>{{ object.timestamp }}</p>
+    <p>email:{{ object.mail }}</p>
     <p>Update {{ object.uptime | timesince }} ago!</p>
     </div>
 {% endblock %}

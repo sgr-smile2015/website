@@ -11,6 +11,7 @@ class RestaurantsLocation(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     uptime = models.DateTimeField(auto_now=True)
     slug = models.SlugField(null=True, blank=True)
+    mail = models.EmailField(null=True, blank=True)
 
     def __str__(self):
         return self.name

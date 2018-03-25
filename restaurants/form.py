@@ -15,10 +15,25 @@ class RestaurantsCreateForm(forms.Form):
 
 
 class RestaurantsLocationCreateForm(forms.ModelForm):
+    #mail = forms.EmailField()
+
     class Meta:
         model = RestaurantsLocation
         fields = [
             'name',
             'location',
-            'category'
+            'category',
+            'mail'
         ]
+
+    def clean_name(self):
+        name = self.cleaned_data.get("name")
+        if name == 'hello':
+            raise forms.ValidationError('not accept hello name')
+        return name
+
+    def clean_mail(self):
+        email = self.cleaned_data.get("mail")
+        if 'qq.com' in email:
+            raise forms.ValidationError('not accept qq email')
+        return email
