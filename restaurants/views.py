@@ -45,15 +45,20 @@ def restaurants_create(request):
     error = form.errors
 
     if form.is_valid():
-        name = form.cleaned_data.get('name')
-        location = form.cleaned_data.get('location')
-        category = form.cleaned_data.get('category')
-        obj = RestaurantsLocation.objects.create(
-            name=name,
-            location=location,
-            category=category
-        )
-        return HttpResponseRedirect('/res/')
+        if request.user.is_authenticated():
+            instance = form.save(commit=False)
+            instance.owner = request.user
+            instance.save()
+            return HttpResponseRedirect('/res/')
+        #name = form.cleaned_data.get('name')
+        #location = form.cleaned_data.get('location')
+        #category = form.cleaned_data.get('category')
+        #obj = RestaurantsLocation.objects.create(
+        #    name=name,
+        #    location=location,
+        #    category=category
+        #)
+        #return HttpResponseRedirect('/res/')
     if form.errors:
         print(form.errors)
     context = {
