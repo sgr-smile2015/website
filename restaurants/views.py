@@ -41,7 +41,7 @@ class HomeView(TemplateView):
 
 def restaurants_create(request):
     template_name = 'restaurants/form.html'
-    form = RestaurantsCreateForm(request.POST or None)
+    form = RestaurantsLocationCreateForm(request.POST or None)
     error = form.errors
 
     if form.is_valid():
@@ -50,6 +50,8 @@ def restaurants_create(request):
             instance.owner = request.user
             instance.save()
             return HttpResponseRedirect('/res/')
+        else:
+            return HttpResponseRedirect('/login/')
         #name = form.cleaned_data.get('name')
         #location = form.cleaned_data.get('location')
         #category = form.cleaned_data.get('category')
@@ -111,4 +113,5 @@ class RestaurantsFormCreate(CreateView):
     template_name = 'restaurants/form.html'
     form_class = RestaurantsLocationCreateForm
     success_url = '/res/'
+
 
