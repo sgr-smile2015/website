@@ -5,6 +5,9 @@ from django.db.models import Q
 
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 
 from .models import RestaurantsLocation
 from .form import RestaurantsCreateForm, RestaurantsLocationCreateForm
@@ -39,6 +42,7 @@ class HomeView(TemplateView):
         return context
 
 
+@login_required()
 def restaurants_create(request):
     template_name = 'restaurants/form.html'
     form = RestaurantsLocationCreateForm(request.POST or None)
@@ -79,6 +83,10 @@ def restaurants(request):
     return render(request, template_name, context)
 
 
+class RestaurantLoginViews(LoginView):
+    template_name = 'restaurants/login.html'
+
+
 class RestaurantsListViews(ListView):
     template_name = 'restaurants/restaurants_list.html'
 
@@ -109,9 +117,13 @@ class RestaurantsDetailViews(DetailView):
     #    return obj
 
 
-class RestaurantsFormCreate(CreateView):
-    template_name = 'restaurants/form.html'
+class RestaurantsFormCreate(LoginRequiredMixin, CreateView):
     form_class = RestaurantsLocationCreateForm
+    template_name = 'restaurants/form.html'
+    login_url = '/login/'
     success_url = '/res/'
 
-
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(RestaurantsFormCreate, self).form_invalid(form)
