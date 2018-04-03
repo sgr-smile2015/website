@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'restaurants',
+    'menus',
+
     'crm',
     'student',
     'common',
