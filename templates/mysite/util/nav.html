@@ -1,6 +1,8 @@
 <div class="container">
     <h3>github.com</h3>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
+    <a href={% url 'res:home' %}>Home</a>
+    <a href={% url 'res:about' %}>About</a>
+    <a href={% url 'res:contact' %}>Contact</a>
+    <a href={% url 'res:list' %}>Restaurant</a>
+    <a href={% url 'res:create' %}>Create</a>
 </div>

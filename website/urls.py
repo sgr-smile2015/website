@@ -11,7 +11,7 @@ from restaurants.views import RestaurantLoginViews
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^', include('restaurants.urls')),
+    url(r'^', include('restaurants.urls', namespace='res')),
     url(r'^crm/', include('crm.urls')),
     url(r'^login/', RestaurantLoginViews.as_view(), name='login'),
     url(r'^stu/', include('student.urls')),
