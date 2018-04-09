@@ -126,4 +126,6 @@ class RestaurantsFormCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.owner = self.request.user
-        return super(RestaurantsFormCreate, self).form_invalid(form)
+        instance.save()
+        return HttpResponseRedirect('/res/')
+        #return super(RestaurantsFormCreate, self).form_invalid(form)
