@@ -3,7 +3,7 @@ from django.conf import settings
 from restaurants.models import RestaurantsLocation
 
 
-class Item(models.Model):
+class ResItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     restaurant = models.ForeignKey(RestaurantsLocation)
 
